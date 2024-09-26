@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Name="ThisPage"
+             x:Class="bugTouchBehavior.MainPage">
+    
+    <ContentPage.Resources>
+        <Style
+            x:Key="MenuItemStyle"
+            TargetType="{x:Type Border}">
+            <Style.Behaviors>
+                <toolkit:TouchBehavior HoveredScale="0.8" HoveredBackgroundColor="Pink" PressedBackgroundColor="Red" ShouldMakeChildrenInputTransparent="False"/>
+            </Style.Behaviors>
+        </Style>
+    </ContentPage.Resources>
+    
+    <ScrollView>
+        <Grid RowDefinitions="40*,300*" ColumnDefinitions="100*,100*,100*">
+
+            <VerticalStackLayout Grid.Column="0" Grid.Row="1">
+                <Label Text="TouchBehavior " HorizontalOptions="Center"/>
+                <CollectionView SelectionMode="Multiple" 
+                            ItemsSource="{Binding Persons}" 
+                            SelectedItems="{Binding SelectedPersons}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid HeightRequest="80" WidthRequest="80"  ColumnDefinitions="10*" RowDefinitions="10*">
+                                <Border BackgroundColor="DarkGray">
+                                    <Border.Behaviors>
+                                        <toolkit:TouchBehavior HoveredScale="0.8" HoveredBackgroundColor="LawnGreen" PressedBackgroundColor="Green"/>
+                                    </Border.Behaviors>
+                                    <Label Text="{Binding Id}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                                </Border>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Grid.Column="1" Grid.Row="1">
+                <Label Text="TouchBehavior in style" HorizontalOptions="Center"/>
+                <CollectionView SelectionMode="Multiple" 
+                            ItemsSource="{Binding Persons}" 
+                            SelectedItems="{Binding SelectedPersons}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid HeightRequest="80" WidthRequest="80"  ColumnDefinitions="10*" RowDefinitions="10*">
+                                <Border  Style="{StaticResource MenuItemStyle}" BackgroundColor="DarkGray">
+                                    <Label Text="{Binding Id}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                                </Border>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Grid.Column="2" Grid.Row="1">
+                <Label Text="TouchBehavior in style in VerticalStackLayout" HorizontalOptions="Center"/>
+                <Border HeightRequest="80" WidthRequest="80"  Style="{StaticResource MenuItemStyle}" BackgroundColor="DarkGray">
+                    <Label Text="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                </Border>
+                <Border HeightRequest="80" WidthRequest="80" Style="{StaticResource MenuItemStyle}" BackgroundColor="DarkGray">
+                    <Label Text="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                </Border>
+                <Border HeightRequest="80" WidthRequest="80" Style="{StaticResource MenuItemStyle}" BackgroundColor="DarkGray">
+                    <Label Text="2" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                </Border>
+                <Border HeightRequest="80" WidthRequest="80" Style="{StaticResource MenuItemStyle}" BackgroundColor="DarkGray">
+                    <Label Text="3" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                </Border>
+            </VerticalStackLayout>
+        </Grid>
+        
+        
+
+    </ScrollView>
+
+</ContentPage>
